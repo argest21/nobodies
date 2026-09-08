@@ -4,103 +4,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="NOBODIES — FiveM yayıncı topluluğu.">
-    <meta name="theme-color" content="#050505">
+    <meta
+        name="description"
+        content="NOBODIES - Kimse değiliz. Her yerdeyiz."
+    >
 
-    <title>NOBODIES — We Are Nobody</title>
+    <title>NOBODIES — Kimse Değiliz. Her Yerdeyiz.</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- LOADING -->
+    <div class="noise"></div>
 
+    <!-- YÜKLEME EKRANI -->
     <div id="loader">
-        <div class="loader-logo">N</div>
-        <div class="loader-line"></div>
-        <p>ENTERING NOBODIES</p>
+        <div class="loader-logo">
+            NOBODIES<span>.</span>
+        </div>
+
+        <div class="loader-line">
+            <span></span>
+        </div>
+
+        <div class="loader-text">
+            SİSTEM BAŞLATILIYOR...
+        </div>
     </div>
 
 
-    <!-- BACKGROUND -->
-
-    <div class="noise"></div>
-    <div class="background-grid"></div>
-
-
     <!-- NAVBAR -->
+    <nav class="navbar">
 
-    <header class="navbar">
-
-        <a href="#home" class="brand">
-            <span class="brand-symbol">N</span>
-
-            <span>
-                <strong>NOBODIES</strong>
-                <small>EST. 2026</small>
-            </span>
+        <a href="#anasayfa" class="logo">
+            NOBODIES<span>.</span>
         </a>
 
+        <div class="nav-links">
 
-        <nav>
-            <a href="#home">HOME</a>
-            <a href="#about">ABOUT</a>
-            <a href="#members">CREW</a>
-            <a href="#streams">STREAMS</a>
-            <a href="#gallery">GALLERY</a>
-        </nav>
+            <a href="#anasayfa">
+                ANA SAYFA
+            </a>
 
+            <a href="#hakkimizda">
+                BİZ KİMİZ?
+            </a>
 
-        <a href="#community" class="nav-button">
-            JOIN US
+            <a href="#ekip">
+                EKİP
+            </a>
+
+            <a href="#yayinlar">
+                YAYINLAR
+            </a>
+
+            <a href="#galeri">
+                GALERİ
+            </a>
+
+            <a href="#topluluk">
+                TOPLULUK
+            </a>
+
+        </div>
+
+        <a href="#topluluk" class="nav-button">
+            BİZE KATIL ↗
         </a>
 
-    </header>
+    </nav>
 
 
+    <main>
 
-    <!-- HERO -->
+        <!-- HERO -->
+        <section class="hero" id="anasayfa">
 
-    <main id="home">
-
-        <section class="hero">
-
-            <div class="hero-overlay"></div>
+            <div class="hero-grid"></div>
 
             <div class="hero-content">
 
-                <div class="eyebrow">
-                    <span></span>
-                    FIVEM CREATOR COLLECTIVE
+                <div class="hero-tag">
+
+                    <span class="dot"></span>
+
+                    LOS SANTOS / 2026
+
                 </div>
 
+
                 <h1>
-                    WE ARE
-                    <span>NOBODIES.</span>
+                    KİMSE
+                    <br>
+                    <span>DEĞİLİZ.</span>
                 </h1>
 
-                <p class="hero-description">
-                    No names. No limits.
-                    Just a group of creators building
-                    their own story in Los Santos.
-                </p>
 
-                <div class="hero-buttons">
+                <div class="hero-bottom">
 
-                    <a href="#members" class="primary-button">
-                        MEET THE CREW
-                        <span>↗</span>
-                    </a>
+                    <p>
+                        Los Santos'un gölgelerinde
+                        <br>
+                        kendi hikâyemizi yazıyoruz.
+                    </p>
 
-                    <a href="#streams" class="secondary-button">
-                        WATCH LIVE
-                    </a>
+
+                    <div class="hero-buttons">
+
+                        <a
+                            href="#ekip"
+                            class="btn btn-primary"
+                        >
+                            EKİBİ KEŞFET ↗
+                        </a>
+
+
+                        <a
+                            href="#topluluk"
+                            class="btn btn-outline"
+                        >
+                            TOPLULUĞA KATIL
+                        </a>
+
+                    </div>
 
                 </div>
 
@@ -108,279 +143,423 @@
 
 
             <div class="hero-side-text">
-                LOS SANTOS<br>
-                <span>00 / 26</span>
+                NOBODIES / EST. 2026
             </div>
 
 
             <div class="scroll-indicator">
-                <span>SCROLL TO EXPLORE</span>
-                <div></div>
+                AŞAĞI KAYDIR ↓
             </div>
 
         </section>
 
 
-
-        <!-- MARQUEE -->
-
+        <!-- KAYAN YAZI -->
         <div class="marquee">
 
             <div class="marquee-track">
 
                 <span>NOBODIES</span>
-                <i>✦</i>
-                <span>NO NAME</span>
-                <i>✦</i>
-                <span>NO LIMITS</span>
-                <i>✦</i>
+                <b>✦</b>
+
+                <span>KİMSE DEĞİLİZ</span>
+                <b>✦</b>
+
+                <span>HER YERDEYİZ</span>
+                <b>✦</b>
+
                 <span>LOS SANTOS</span>
-                <i>✦</i>
+                <b>✦</b>
 
                 <span>NOBODIES</span>
-                <i>✦</i>
-                <span>NO NAME</span>
-                <i>✦</i>
-                <span>NO LIMITS</span>
-                <i>✦</i>
-                <span>LOS SANTOS</span>
-                <i>✦</i>
+                <b>✦</b>
+
+                <span>KİMSE DEĞİLİZ</span>
+                <b>✦</b>
+
+                <span>HER YERDEYİZ</span>
+                <b>✦</b>
 
             </div>
 
         </div>
 
 
+        <!-- HAKKIMIZDA -->
+        <section class="section" id="hakkimizda">
 
-        <!-- ABOUT -->
+            <div class="section-label">
+                01 / BİZ KİMİZ?
+            </div>
 
-        <section id="about" class="section about">
 
-            <div class="section-number">01</div>
+            <div class="about-content">
+
+                <h2>
+                    BİZİ
+                    <br>
+                    <span>TANI.</span>
+                </h2>
+
+
+                <div class="about-text">
+
+                    <p class="big-text">
+
+                        Biz sıradan bir ekip değiliz.
+
+                        <strong>NOBODIES</strong>,
+
+                        FiveM dünyasında kendi kurallarını yazan
+                        yayıncıların, oyuncuların ve içerik
+                        üreticilerinin buluştuğu bir topluluk.
+
+                    </p>
+
+
+                    <p>
+
+                        Sokakta başlayan hikâyeler,
+                        ekranlarda milyonlara ulaşan anlara
+                        dönüşüyor.
+
+                        Eğlence, rekabet ve kaos bizim işimiz.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- İSTATİSTİKLER -->
+        <section class="stats-section">
+
+            <div class="stat">
+
+                <strong data-target="25">
+                    0
+                </strong>
+
+                <span>+</span>
+
+                <p>
+                    EKİP ÜYESİ
+                </p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong data-target="100">
+                    0
+                </strong>
+
+                <span>K+</span>
+
+                <p>
+                    TOPLULUK
+                </p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong data-target="500">
+                    0
+                </strong>
+
+                <span>+</span>
+
+                <p>
+                    YAYIN
+                </p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <strong data-target="24">
+                    0
+                </strong>
+
+                <span>/7</span>
+
+                <p>
+                    AKTİF
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- EKİP -->
+        <section class="section" id="ekip">
+
+            <div class="section-top">
+
+                <div class="section-label">
+                    02 / EKİP
+                </div>
+
+                <div class="section-count">
+                    NOBODIES CREW
+                </div>
+
+            </div>
+
 
             <div class="section-heading">
 
-                <div class="eyebrow">
-                    <span></span>
-                    WHO ARE WE?
-                </div>
-
                 <h2>
-                    WE DON'T NEED
+                    BİZİM
                     <br>
-                    <em>A NAME.</em>
+                    <span>EKİP.</span>
                 </h2>
 
+
+                <p>
+                    Her birinin kendi hikâyesi var.
+                    <br>
+                    Hepsinin ortak noktası NOBODIES.
+                </p>
+
             </div>
 
 
-            <div class="about-text">
+            <div class="team-grid">
 
-                <p class="large-text">
-                    NOBODIES is a creator collective built around
-                    FiveM, gaming and entertainment.
-                </p>
 
-                <p>
-                    We are streamers, creators and players who
-                    came together to create something different.
-                    Every member has their own style, their own
-                    audience and their own story.
-                </p>
+                <!-- ÜYE 1 -->
+                <article class="member-card">
 
-                <p>
-                    Together, we turn ordinary moments into
-                    moments worth watching.
-                </p>
+                    <div class="member-image">
+
+                        <span>
+                            01
+                        </span>
+
+                    </div>
+
+
+                    <div class="member-info">
+
+                        <div>
+
+                            <h3>
+                                NOBODY
+                            </h3>
+
+                            <p>
+                                YAYINCI / KURUCU
+                            </p>
+
+                        </div>
+
+
+                        <a href="#">
+                            ↗
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- ÜYE 2 -->
+                <article class="member-card">
+
+                    <div class="member-image">
+
+                        <span>
+                            02
+                        </span>
+
+                    </div>
+
+
+                    <div class="member-info">
+
+                        <div>
+
+                            <h3>
+                                ÜYE 02
+                            </h3>
+
+                            <p>
+                                YAYINCI / İÇERİK ÜRETİCİSİ
+                            </p>
+
+                        </div>
+
+
+                        <a href="#">
+                            ↗
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- ÜYE 3 -->
+                <article class="member-card">
+
+                    <div class="member-image">
+
+                        <span>
+                            03
+                        </span>
+
+                    </div>
+
+
+                    <div class="member-info">
+
+                        <div>
+
+                            <h3>
+                                ÜYE 03
+                            </h3>
+
+                            <p>
+                                YAYINCI / OYUNCU
+                            </p>
+
+                        </div>
+
+
+                        <a href="#">
+                            ↗
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- ÜYE 4 -->
+                <article class="member-card">
+
+                    <div class="member-image">
+
+                        <span>
+                            04
+                        </span>
+
+                    </div>
+
+
+                    <div class="member-info">
+
+                        <div>
+
+                            <h3>
+                                ÜYE 04
+                            </h3>
+
+                            <p>
+                                İÇERİK ÜRETİCİSİ
+                            </p>
+
+                        </div>
+
+
+                        <a href="#">
+                            ↗
+                        </a>
+
+                    </div>
+
+                </article>
 
             </div>
 
         </section>
 
 
+        <!-- YAYINLAR -->
+        <section class="section streams" id="yayinlar">
 
-        <!-- STATS -->
+            <div class="section-top">
 
-        <section class="stats">
+                <div class="section-label">
+                    03 / YAYINLAR
+                </div>
 
-            <div class="stat">
-                <strong data-count="12">0</strong>
-                <span>CREATORS</span>
+
+                <div class="live-status">
+
+                    <span></span>
+
+                    CANLI
+
+                </div>
+
             </div>
 
-            <div class="stat">
-                <strong data-count="48">0</strong>
-                <span>STREAMS / MONTH</span>
-            </div>
-
-            <div class="stat">
-                <strong data-count="100">0</strong>
-                <span>ENERGY</span>
-            </div>
-
-            <div class="stat">
-                <strong>∞</strong>
-                <span>POSSIBILITIES</span>
-            </div>
-
-        </section>
-
-
-
-        <!-- MEMBERS -->
-
-        <section id="members" class="section members">
-
-            <div class="section-number">02</div>
 
             <div class="section-heading">
 
-                <div class="eyebrow">
-                    <span></span>
-                    THE CREW
-                </div>
-
                 <h2>
-                    MEET THE
+                    CANLI
                     <br>
-                    <em>NOBODIES.</em>
+                    <span>YAYINLAR.</span>
                 </h2>
 
-            </div>
 
+                <p>
 
-            <div class="member-grid">
-
-                <article class="member-card">
-
-                    <div class="member-number">01</div>
-
-                    <div class="member-avatar">
-                        N
-                    </div>
-
-                    <div class="member-info">
-                        <span>FOUNDER</span>
-                        <h3>NOBODY</h3>
-                        <p>Streamer · Creator</p>
-                    </div>
-
-                    <a href="#" class="member-link">↗</a>
-
-                </article>
-
-
-                <article class="member-card">
-
-                    <div class="member-number">02</div>
-
-                    <div class="member-avatar">
-                        N
-                    </div>
-
-                    <div class="member-info">
-                        <span>CREATOR</span>
-                        <h3>MEMBER 02</h3>
-                        <p>Streamer · Creator</p>
-                    </div>
-
-                    <a href="#" class="member-link">↗</a>
-
-                </article>
-
-
-                <article class="member-card">
-
-                    <div class="member-number">03</div>
-
-                    <div class="member-avatar">
-                        N
-                    </div>
-
-                    <div class="member-info">
-                        <span>CREATOR</span>
-                        <h3>MEMBER 03</h3>
-                        <p>Streamer · Creator</p>
-                    </div>
-
-                    <a href="#" class="member-link">↗</a>
-
-                </article>
-
-
-                <article class="member-card">
-
-                    <div class="member-number">04</div>
-
-                    <div class="member-avatar">
-                        N
-                    </div>
-
-                    <div class="member-info">
-                        <span>CREATOR</span>
-                        <h3>MEMBER 04</h3>
-                        <p>Streamer · Creator</p>
-                    </div>
-
-                    <a href="#" class="member-link">↗</a>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- STREAMS -->
-
-        <section id="streams" class="section streams">
-
-            <div class="section-number">03</div>
-
-            <div class="section-heading stream-heading">
-
-                <div class="eyebrow">
-                    <span></span>
-                    LIVE NOW
-                </div>
-
-                <h2>
-                    WATCH THE
+                    NOBODIES ekibinden en son yayınlar,
                     <br>
-                    <em>NOBODIES.</em>
-                </h2>
+                    klipler ve unutulmaz anlar.
+
+                </p>
 
             </div>
 
 
             <div class="stream-grid">
 
-                <article class="stream-card">
 
-                    <div class="stream-preview">
-                        <div class="live-badge">
-                            ● LIVE
-                        </div>
+                <!-- YAYIN 1 -->
+                <article class="stream-card featured">
 
-                        <div class="stream-placeholder">
-                            N
-                        </div>
+                    <div class="thumbnail">
 
-                        <button class="play-button">
+                        <button class="play">
                             ▶
                         </button>
+
+                        <b>
+                            CANLI
+                        </b>
+
                     </div>
+
 
                     <div class="stream-info">
 
                         <div>
-                            <span>FIVEM</span>
-                            <h3>NOBODY LIVE</h3>
+
+                            <h3>
+                                NOBODIES GTA RP
+                            </h3>
+
+                            <p>
+                                FiveM • Los Santos
+                            </p>
+
                         </div>
 
-                        <span class="viewer-count">
-                            1.2K VIEWERS
+                        <span>
+                            ↗
                         </span>
 
                     </div>
@@ -388,29 +567,69 @@
                 </article>
 
 
-                <article class="stream-card offline">
+                <!-- YAYIN 2 -->
+                <article class="stream-card">
 
-                    <div class="stream-preview">
+                    <div class="thumbnail">
 
-                        <div class="offline-badge">
-                            OFFLINE
-                        </div>
-
-                        <div class="stream-placeholder">
-                            N
-                        </div>
+                        <button class="play">
+                            ▶
+                        </button>
 
                     </div>
+
 
                     <div class="stream-info">
 
                         <div>
-                            <span>FIVEM</span>
-                            <h3>MEMBER 02</h3>
+
+                            <h3>
+                                LOS SANTOS'TA BİR GECE
+                            </h3>
+
+                            <p>
+                                FiveM • Hikâye
+                            </p>
+
                         </div>
 
-                        <span class="viewer-count">
-                            OFFLINE
+                        <span>
+                            ↗
+                        </span>
+
+                    </div>
+
+                </article>
+
+
+                <!-- YAYIN 3 -->
+                <article class="stream-card">
+
+                    <div class="thumbnail">
+
+                        <button class="play">
+                            ▶
+                        </button>
+
+                    </div>
+
+
+                    <div class="stream-info">
+
+                        <div>
+
+                            <h3>
+                                EKİPLE KAOS
+                            </h3>
+
+                            <p>
+                                FiveM • Eğlence
+                            </p>
+
+                        </div>
+
+                        <span>
+                            ↗
                         </span>
 
                     </div>
@@ -422,24 +641,20 @@
         </section>
 
 
+        <!-- GALERİ -->
+        <section class="section" id="galeri">
 
-        <!-- GALLERY -->
+            <div class="section-label">
+                04 / GALERİ
+            </div>
 
-        <section id="gallery" class="section gallery">
-
-            <div class="section-number">04</div>
 
             <div class="section-heading">
 
-                <div class="eyebrow">
-                    <span></span>
-                    FROM LOS SANTOS
-                </div>
-
                 <h2>
-                    MOMENTS
+                    GÖLGEDE
                     <br>
-                    <em>MATTER.</em>
+                    <span>KALANLAR.</span>
                 </h2>
 
             </div>
@@ -448,27 +663,30 @@
             <div class="gallery-grid">
 
                 <div class="gallery-item large">
-                    <div class="gallery-placeholder">
-                        NOBODIES
-                    </div>
+                    <span>
+                        NOBODIES / 001
+                    </span>
                 </div>
 
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        LOS SANTOS
-                    </div>
-                </div>
 
                 <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        2026
-                    </div>
+                    <span>
+                        NOBODIES / 002
+                    </span>
                 </div>
+
+
+                <div class="gallery-item">
+                    <span>
+                        NOBODIES / 003
+                    </span>
+                </div>
+
 
                 <div class="gallery-item wide">
-                    <div class="gallery-placeholder">
-                        NO NAME. NO LIMITS.
-                    </div>
+                    <span>
+                        NOBODIES / 004
+                    </span>
                 </div>
 
             </div>
@@ -476,41 +694,54 @@
         </section>
 
 
-
-        <!-- COMMUNITY -->
-
-        <section id="community" class="community">
+        <!-- TOPLULUK -->
+        <section class="community" id="topluluk">
 
             <div class="community-content">
 
-                <div class="eyebrow">
-                    <span></span>
-                    JOIN THE COMMUNITY
+                <div class="section-label">
+                    05 / TOPLULUK
                 </div>
+
 
                 <h2>
-                    SEE YOU
+
+                    SEN DE
                     <br>
-                    <em>INSIDE.</em>
+
+                    <span>NOBODY</span>
+
+                    <br>
+
+                    OL.
+
                 </h2>
 
+
                 <p>
-                    Join the NOBODIES community and
-                    follow the crew beyond Los Santos.
+
+                    Hikâyenin dışında kalma.
+                    <br>
+                    Topluluğa katıl ve yerini al.
+
                 </p>
 
-                <div class="community-buttons">
 
-                    <a href="#" class="primary-button">
-                        JOIN DISCORD
-                        <span>↗</span>
-                    </a>
+                <a
+                    href="#"
+                    class="btn btn-primary big"
+                >
+                    DISCORD'A KATIL ↗
+                </a>
 
-                    <a href="#" class="secondary-button">
-                        FOLLOW US
-                    </a>
+            </div>
 
-                </div>
+
+            <div class="community-stamp">
+
+                NOBODIES
+                <br>
+                ONLY
 
             </div>
 
@@ -519,25 +750,55 @@
     </main>
 
 
-
     <!-- FOOTER -->
-
     <footer>
 
-        <div class="footer-brand">
-            <span>N</span>
-            <strong>NOBODIES</strong>
+        <div class="footer-top">
+
+            <div class="footer-logo">
+                NOBODIES<span>.</span>
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="#anasayfa">
+                    ANA SAYFA
+                </a>
+
+                <a href="#hakkimizda">
+                    BİZ KİMİZ?
+                </a>
+
+                <a href="#ekip">
+                    EKİP
+                </a>
+
+                <a href="#yayinlar">
+                    YAYINLAR
+                </a>
+
+                <a href="#galeri">
+                    GALERİ
+                </a>
+
+            </div>
+
         </div>
 
-        <div class="footer-links">
-            <a href="#home">HOME</a>
-            <a href="#members">CREW</a>
-            <a href="#streams">STREAMS</a>
-            <a href="#community">DISCORD</a>
-        </div>
 
-        <div class="copyright">
-            © 2026 NOBODIES
+        <div class="footer-bottom">
+
+            <span>
+                © <span id="year"></span>
+                NOBODIES.
+                TÜM HAKLARI SAKLIDIR.
+            </span>
+
+            <span>
+                LOS SANTOS / SAN ANDREAS
+            </span>
+
         </div>
 
     </footer>
