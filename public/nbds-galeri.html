@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NBDS-GALERİ — NOBODIES</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="galeri.css">
+</head>
+
+<body>
+
+    <div class="noise"></div>
+
+    <!-- ÜST MENÜ -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            NOBODIES<span>.</span>
+        </a>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                ANA SAYFA
+            </a>
+
+            <a href="index.html#hakkimizda">
+                BİZ KİMİZ?
+            </a>
+
+            <a href="index.html#ekip">
+                EKİP
+            </a>
+
+            <a href="index.html#yayinlar">
+                YAYINLAR
+            </a>
+
+            <a href="nbds-galeri.html" class="active">
+                NBDS-GALERİ
+            </a>
+
+            <a href="index.html#topluluk">
+                TOPLULUK
+            </a>
+
+        </div>
+
+        <a href="index.html" class="nav-button">
+            ANA SAYFA ↗
+        </a>
+
+    </nav>
+
+
+    <!-- GALERİ -->
+
+    <main class="galeri-page">
+
+        <section class="galeri-hero">
+
+            <div class="section-label">
+                NOBODIES / TOPLULUK
+            </div>
+
+            <h1>
+                NBDS-<br>
+                <span>GALERİ.</span>
+            </h1>
+
+            <p>
+                NOBODIES topluluğunun paylaştığı
+                fotoğraf ve videolar.
+                <br>
+                Sen de anını paylaş.
+            </p>
+
+            <button
+                class="galeri-upload-button"
+                id="uploadButton"
+            >
+                + FOTOĞRAF / VİDEO YÜKLE
+            </button>
+
+        </section>
+
+
+        <!-- YÜKLEME PENCERESİ -->
+
+        <div
+            class="upload-modal"
+            id="uploadModal"
+        >
+
+            <div class="upload-box">
+
+                <button
+                    class="close-button"
+                    id="closeButton"
+                >
+                    ×
+                </button>
+
+                <div class="section-label">
+                    NBDS-GALERİ / YÜKLE
+                </div>
+
+                <h2>
+                    ANINI<br>
+                    <span>PAYLAŞ.</span>
+                </h2>
+
+                <form
+                    id="uploadForm"
+                    enctype="multipart/form-data"
+                >
+
+                    <label>
+                        İSMİN
+                    </label>
+
+                    <input
+                        type="text"
+                        name="isim"
+                        id="isim"
+                        placeholder="Oyundaki veya sosyal medya ismin"
+                        maxlength="40"
+                        required
+                    >
+
+
+                    <label>
+                        FOTOĞRAF / VİDEO
+                    </label>
+
+                    <input
+                        type="file"
+                        name="dosya"
+                        id="dosya"
+                        accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm,video/quicktime"
+                        required
+                    >
+
+
+                    <div
+                        class="file-info"
+                        id="fileInfo"
+                    >
+                        Maksimum dosya boyutu: 100 MB
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="submit-button"
+                        id="submitButton"
+                    >
+                        GALERİYE YÜKLE ↗
+                    </button>
+
+                </form>
+
+
+                <div
+                    class="upload-message"
+                    id="uploadMessage"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- GALERİ İÇERİKLERİ -->
+
+        <section class="galeri-content">
+
+            <div class="galeri-header">
+
+                <div class="section-label">
+                    PAYLAŞILANLAR
+                </div>
+
+                <div
+                    class="galeri-count"
+                    id="galeriCount"
+                >
+                    0 İÇERİK
+                </div>
+
+            </div>
+
+
+            <div
+                class="galeri-grid"
+                id="galeriGrid"
+            >
+
+                <div class="empty-gallery">
+
+                    <div class="empty-icon">
+                        +
+                    </div>
+
+                    <h3>
+                        HENÜZ İÇERİK YOK
+                    </h3>
+
+                    <p>
+                        İlk fotoğraf veya videoyu
+                        sen paylaş.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <div class="footer-top">
+
+            <div class="footer-logo">
+                NOBODIES<span>.</span>
+            </div>
+
+            <div class="footer-links">
+
+                <a href="index.html">
+                    ANA SAYFA
+                </a>
+
+                <a href="index.html#ekip">
+                    EKİP
+                </a>
+
+                <a href="nbds-galeri.html">
+                    NBDS-GALERİ
+                </a>
+
+                <a href="index.html#topluluk">
+                    TOPLULUK
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © <span id="year"></span>
+                NOBODIES.
+                TÜM HAKLARI SAKLIDIR.
+            </span>
+
+            <span>
+                NBDS-GALERİ
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <script src="galeri.js"></script>
+
+</body>
+</html>
