@@ -482,7 +482,7 @@
         </section>
 
 
-        <!-- YAYINLAR -->
+        <!-- KICK YAYINLAR -->
         <section class="section streams" id="yayinlar">
 
             <div class="section-top">
@@ -491,13 +491,9 @@
                     03 / YAYINLAR
                 </div>
 
-
                 <div class="live-status">
-
                     <span></span>
-
-                    CANLI
-
+                    KICK CANLI YAYINLAR
                 </div>
 
             </div>
@@ -506,137 +502,87 @@
             <div class="section-heading">
 
                 <h2>
-                    CANLI
+                    NOBODIES
                     <br>
                     <span>YAYINLAR.</span>
                 </h2>
 
-
                 <p>
-
-                    NOBODIES ekibinden en son yayınlar,
+                    NOBODIES yayıncılarını keşfet.
                     <br>
-                    klipler ve unutulmaz anlar.
-
+                    Bir yayıncıya tıklayarak KICK yayınını aç.
                 </p>
 
             </div>
 
 
-            <div class="stream-grid">
-
-
-                <!-- YAYIN 1 -->
-                <article class="stream-card featured">
-
-                    <div class="thumbnail">
-
-                        <button class="play">
-                            ▶
-                        </button>
-
-                        <b>
-                            CANLI
-                        </b>
-
-                    </div>
-
-
-                    <div class="stream-info">
-
-                        <div>
-
-                            <h3>
-                                NOBODIES GTA RP
-                            </h3>
-
-                            <p>
-                                FiveM • Los Santos
-                            </p>
-
-                        </div>
-
-                        <span>
-                            ↗
-                        </span>
-
-                    </div>
-
-                </article>
-
-
-                <!-- YAYIN 2 -->
-                <article class="stream-card">
-
-                    <div class="thumbnail">
-
-                        <button class="play">
-                            ▶
-                        </button>
-
-                    </div>
-
-
-                    <div class="stream-info">
-
-                        <div>
-
-                            <h3>
-                                LOS SANTOS'TA BİR GECE
-                            </h3>
-
-                            <p>
-                                FiveM • Hikâye
-                            </p>
-
-                        </div>
-
-                        <span>
-                            ↗
-                        </span>
-
-                    </div>
-
-                </article>
-
-
-                <!-- YAYIN 3 -->
-                <article class="stream-card">
-
-                    <div class="thumbnail">
-
-                        <button class="play">
-                            ▶
-                        </button>
-
-                    </div>
-
-
-                    <div class="stream-info">
-
-                        <div>
-
-                            <h3>
-                                EKİPLE KAOS
-                            </h3>
-
-                            <p>
-                                FiveM • Eğlence
-                            </p>
-
-                        </div>
-
-                        <span>
-                            ↗
-                        </span>
-
-                    </div>
-
-                </article>
-
+            <div
+                class="kick-stream-grid"
+                id="kickStreamGrid"
+            >
+                <!-- 21 yayıncı JavaScript ile otomatik oluşturulacak -->
             </div>
 
         </section>
+
+
+        <!-- KICK PLAYER -->
+        <div class="kick-modal" id="kickModal">
+
+            <div class="kick-modal-box">
+
+                <div class="kick-modal-header">
+
+                    <div class="kick-modal-title">
+                        <strong id="kickModalTitle">
+                            NOBODIES
+                        </strong>
+
+                        <span>
+                            KICK YAYINI
+                        </span>
+                    </div>
+
+                    <button
+                        class="kick-modal-close"
+                        id="kickModalClose"
+                        type="button"
+                        aria-label="Kapat"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+                <div class="kick-player-wrap">
+
+                    <iframe
+                        id="kickPlayer"
+                        src=""
+                        title="KICK Yayını"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen
+                    ></iframe>
+
+                </div>
+
+
+                <div class="kick-modal-footer">
+
+                    <span>
+                        NOBODIES / KICK
+                    </span>
+
+                    <span>
+                        ESC → KAPAT
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
 
 
         <!-- GALERİ -->
