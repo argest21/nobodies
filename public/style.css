@@ -2245,3 +2245,620 @@ footer {
         width: 100%;
     }
 }
+
+/* =========================================================
+   NOBODIES — KICK PREMIUM UI
+   Son ekleme: yayıncı kartlarını baştan tasarlar.
+========================================================= */
+
+.streams {
+    position: relative;
+    overflow: hidden;
+}
+
+.streams::before {
+    content: "";
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    right: -300px;
+    top: 40px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255,255,255,.065),
+        rgba(255,255,255,.018) 30%,
+        transparent 70%
+    );
+    pointer-events: none;
+}
+
+.streams .section-heading {
+    position: relative;
+    z-index: 2;
+}
+
+.kick-stream-grid {
+    position: relative;
+    z-index: 2;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    align-items: stretch;
+}
+
+.kick-stream-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    min-height: 345px;
+
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 2px;
+
+    background:
+        radial-gradient(
+            circle at 80% 10%,
+            rgba(255,255,255,.075),
+            transparent 26%
+        ),
+        linear-gradient(
+            145deg,
+            #161616 0%,
+            #0a0a0a 55%,
+            #050505 100%
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.025),
+        0 18px 50px rgba(0,0,0,.18);
+
+    transition:
+        transform .35s cubic-bezier(.2,.7,.2,1),
+        border-color .35s ease,
+        box-shadow .35s ease;
+}
+
+.kick-stream-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            125deg,
+            transparent 0 37%,
+            rgba(255,255,255,.045) 37.2% 37.7%,
+            transparent 38% 100%
+        ),
+        linear-gradient(
+            305deg,
+            transparent 0 72%,
+            rgba(255,255,255,.026) 72.2% 72.6%,
+            transparent 73% 100%
+        );
+}
+
+.kick-stream-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    opacity: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.10),
+            transparent 27%
+        );
+
+    transition: opacity .35s ease;
+}
+
+.kick-stream-card:hover {
+    transform: translateY(-9px);
+
+    border-color:
+        rgba(255,255,255,.34);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.05),
+        0 24px 70px rgba(0,0,0,.35);
+}
+
+.kick-stream-card:hover::after {
+    opacity: 1;
+}
+
+/* Kartın üst tarafındaki dekoratif HUD çizgileri */
+
+.kick-stream-card .kick-card-number {
+    top: 18px;
+    left: 18px;
+
+    color: #5c5c5c;
+
+    font-family: "Oswald", sans-serif;
+    font-size: 11px;
+
+    letter-spacing: .16em;
+}
+
+.kick-stream-card .kick-card-number::before {
+    content: "NO.";
+    margin-right: 6px;
+    color: #343434;
+}
+
+.kick-stream-card .kick-card-badge,
+.kick-stream-card .kick-live-badge {
+    top: 17px;
+    right: 17px;
+
+    min-width: 52px;
+    min-height: 24px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 9px;
+
+    border: 1px solid #575757;
+
+    font-size: 7px;
+    font-weight: 900;
+
+    letter-spacing: .18em;
+}
+
+.kick-stream-card .kick-card-badge {
+    color: #9f9f9f;
+    background: rgba(255,255,255,.035);
+}
+
+.kick-stream-card .kick-live-badge {
+    color: #070707;
+    background: #e8e8e8;
+    border-color: #e8e8e8;
+
+    box-shadow:
+        0 0 25px rgba(255,255,255,.13);
+}
+
+/* Canlı karta sol tarafta güçlü durum çizgisi */
+
+.kick-stream-card.is-live {
+    border-color: rgba(255,255,255,.38);
+
+    background:
+        radial-gradient(
+            circle at 72% 12%,
+            rgba(255,255,255,.10),
+            transparent 24%
+        ),
+        linear-gradient(
+            145deg,
+            #191919 0%,
+            #0a0a0a 55%,
+            #050505 100%
+        );
+}
+
+.kick-stream-card.is-live::marker {
+    display: none;
+}
+
+.kick-stream-card.is-live::before {
+    background:
+        linear-gradient(
+            125deg,
+            transparent 0 36%,
+            rgba(255,255,255,.065) 36.3% 36.8%,
+            transparent 37% 100%
+        ),
+        linear-gradient(
+            315deg,
+            transparent 0 69%,
+            rgba(255,255,255,.05) 69.2% 69.7%,
+            transparent 70% 100%
+        );
+}
+
+.kick-stream-card.is-live::after {
+    opacity: 1;
+    top: 0;
+    bottom: auto;
+    left: 0;
+    right: auto;
+
+    width: 4px;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #fff 0,
+            #aaa 35%,
+            #fff 70%,
+            #777 100%
+        );
+
+    box-shadow:
+        0 0 22px rgba(255,255,255,.18);
+}
+
+/* Büyük N arka planını logo hissine çevir */
+
+.kick-symbol {
+    left: auto !important;
+    right: 24px !important;
+    top: 72px !important;
+
+    color: transparent !important;
+
+    -webkit-text-stroke:
+        1px rgba(255,255,255,.06);
+
+    font-size: 128px !important;
+    letter-spacing: -.08em;
+
+    transform: skewX(-8deg);
+}
+
+.kick-symbol::after {
+    content: "NBDS";
+    position: absolute;
+
+    left: -85px;
+    top: 37px;
+
+    color: rgba(255,255,255,.018);
+
+    font-family: "Oswald", sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+
+    letter-spacing: .15em;
+}
+
+/* İç düzen */
+
+.kick-card-body {
+    min-height: 345px !important;
+
+    padding:
+        82px
+        22px
+        22px !important;
+
+    justify-content: flex-end;
+}
+
+.kick-name {
+    max-width: 75%;
+
+    color: #eeeeee !important;
+
+    font-family:
+        "Oswald",
+        sans-serif !important;
+
+    font-size:
+        clamp(
+            28px,
+            3vw,
+            42px
+        ) !important;
+
+    line-height: .9 !important;
+    letter-spacing: -.035em !important;
+}
+
+.is-live .kick-name {
+    color: #fff !important;
+}
+
+.kick-platform {
+    margin-top: 9px !important;
+
+    color: #5a5a5a !important;
+
+    font-size: 8px !important;
+    letter-spacing: .18em !important;
+}
+
+/* Yayın başlığı */
+
+.kick-stream-title {
+    max-width: 88%;
+
+    margin-top: 14px !important;
+
+    color: #777 !important;
+
+    font-size: 10px !important;
+    line-height: 1.55 !important;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.is-live .kick-stream-title {
+    color: #bcbcbc !important;
+}
+
+/* Alt bilgi satırı */
+
+.kick-status-row {
+    margin-top: 22px !important;
+
+    padding-top: 15px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.08);
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content:
+        space-between !important;
+
+    gap: 12px !important;
+}
+
+.kick-viewers {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    min-width: 0;
+
+    color: #d0d0d0 !important;
+
+    font-size: 8px !important;
+    font-weight: 800 !important;
+
+    letter-spacing: .12em;
+}
+
+.kick-viewers::first-letter {
+    color: #fff;
+}
+
+.kick-viewers.offline {
+    color: #4d4d4d !important;
+}
+
+/* Aksiyon butonları */
+
+.kick-actions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.kick-watch,
+.kick-go {
+    min-height: 38px !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding:
+        0
+        12px !important;
+
+    font-size: 8px !important;
+
+    font-weight: 900 !important;
+
+    letter-spacing: .12em !important;
+
+    transition:
+        background .25s ease,
+        border-color .25s ease,
+        color .25s ease,
+        transform .25s ease;
+}
+
+.kick-watch {
+    border-color: #626262 !important;
+
+    background: #dedede !important;
+
+    color: #050505 !important;
+}
+
+.kick-watch:hover {
+    transform: translateY(-2px);
+
+    background: #fff !important;
+
+    border-color: #fff !important;
+
+    color: #000 !important;
+}
+
+.kick-go {
+    border: 1px solid #383838 !important;
+
+    background: #0c0c0c !important;
+
+    color: #8e8e8e !important;
+}
+
+.kick-go:hover {
+    transform: translateY(-2px);
+
+    border-color: #777 !important;
+
+    background: #181818 !important;
+
+    color: #e6e6e6 !important;
+}
+
+.is-live .kick-watch {
+    box-shadow:
+        0 0 22px rgba(255,255,255,.06);
+}
+
+/* Canlı sayısı */
+
+.streams .live-status {
+    padding:
+        8px
+        11px;
+
+    border:
+        1px solid #292929;
+
+    background:
+        rgba(255,255,255,.018);
+
+    font-size: 8px;
+
+    letter-spacing: .15em;
+}
+
+.streams .live-status span {
+    width: 6px;
+    height: 6px;
+
+    background: #ddd;
+
+    box-shadow:
+        0 0 14px
+        rgba(255,255,255,.28);
+}
+
+
+/* İlk canlı yayın öne çıksın */
+.kick-stream-grid > .is-live:first-child {
+    grid-column: span 2;
+    min-height: 400px;
+}
+
+.kick-stream-grid > .is-live:first-child .kick-card-body {
+    min-height: 400px !important;
+}
+
+.kick-stream-grid > .is-live:first-child .kick-name {
+    font-size:
+        clamp(
+            35px,
+            4.2vw,
+            58px
+        ) !important;
+}
+
+.kick-stream-grid > .is-live:first-child .kick-symbol {
+    font-size: 175px !important;
+    right: 36px !important;
+    top: 62px !important;
+}
+
+.kick-stream-grid > .is-live:first-child .kick-stream-title {
+    max-width: 65%;
+}
+
+
+/* Boş / hata kartı */
+
+.kick-empty {
+    grid-column: 1 / -1;
+
+    min-height: 260px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px dashed #333;
+
+    background: #080808;
+
+    color: #525252;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: .18em;
+    line-height: 1.8;
+
+    text-align: center;
+}
+
+
+/* Tablet */
+
+@media (max-width: 1050px) {
+
+    .kick-stream-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .kick-stream-grid > .is-live:first-child {
+        grid-column: span 2;
+    }
+
+}
+
+
+/* Mobil */
+
+@media (max-width: 680px) {
+
+    .kick-stream-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .kick-stream-grid > .is-live:first-child {
+        grid-column: auto;
+    }
+
+    .kick-stream-card,
+    .kick-card-body {
+        min-height: 300px !important;
+    }
+
+    .kick-name,
+    .kick-stream-grid > .is-live:first-child .kick-name {
+        max-width: 85%;
+        font-size: 30px !important;
+    }
+
+    .kick-symbol,
+    .kick-stream-grid > .is-live:first-child .kick-symbol {
+        font-size: 110px !important;
+        right: 18px !important;
+        top: 70px !important;
+    }
+
+    .kick-status-row {
+        align-items: stretch !important;
+        flex-direction: column !important;
+    }
+
+    .kick-actions {
+        width: 100%;
+    }
+
+    .kick-watch,
+    .kick-go {
+        flex: 1;
+    }
+
+}
