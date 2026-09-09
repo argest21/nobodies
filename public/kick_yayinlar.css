@@ -1,0 +1,85 @@
+<!-- KICK YAYINLAR -->
+<section class="section streams" id="yayinlar">
+
+    <div class="section-top">
+        <div class="section-label">
+            03 / YAYINLAR
+        </div>
+
+        <div class="live-status">
+            <span></span>
+            KICK
+        </div>
+    </div>
+
+    <div class="section-heading">
+        <h2>
+            NOBODIES
+            <br>
+            <span>YAYINLAR.</span>
+        </h2>
+
+        <p>
+            NOBODIES yayıncılarını keşfet.
+            <br>
+            Yayını açmak için bir yayıncıya tıkla.
+        </p>
+    </div>
+
+    <div
+        class="kick-streams"
+        id="kickStreamGrid"
+    >
+        <!-- Yayıncılar JavaScript ile otomatik oluşturulacak -->
+    </div>
+
+</section>
+
+
+<!-- KICK PLAYER -->
+<div class="kick-modal" id="kickModal">
+
+    <div class="kick-modal-box">
+
+        <div class="kick-modal-header">
+
+            <div class="kick-modal-title">
+                <span id="kickModalTitle">NOBODIES</span>
+                <span>KICK LIVE PLAYER</span>
+            </div>
+
+            <button
+                class="kick-modal-close"
+                id="kickModalClose"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <div class="kick-player-wrap">
+
+            <iframe
+                id="kickPlayer"
+                src=""
+                title="KICK Yayını"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen
+            ></iframe>
+
+        </div>
+
+        <div class="kick-modal-footer">
+            <span>
+                KICK / NOBODIES
+            </span>
+
+            <span>
+                ESC → KAPAT
+            </span>
+        </div>
+
+    </div>
+
+</div>
