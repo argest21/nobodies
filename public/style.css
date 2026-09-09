@@ -1199,284 +1199,6 @@ footer {
 }
 
 
-
-
-/* =========================================================
-   NOBODIES LOGO SYSTEM
-========================================================= */
-
-.brand-lockup {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    min-width: 180px;
-}
-
-.site-logo {
-    width: 56px;
-    height: 39px;
-    object-fit: contain;
-
-    /* Siyah logo dosyasını beyaza çevirir. */
-    filter: brightness(0) invert(1);
-
-    opacity: 1;
-
-    flex: 0 0 auto;
-}
-
-.brand-lockup .logo {
-    line-height: 1;
-}
-
-
-/* Hero'da büyük silüet logo */
-
-.hero-logo-mark {
-    position: absolute;
-
-    top: 25px;
-    right: 10vw;
-
-    z-index: 1;
-
-    width: 290px;
-    height: 190px;
-
-    opacity: .22;
-
-    transform: rotate(-5deg);
-
-    pointer-events: none;
-}
-
-.hero-logo-mark img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-
-    filter: brightness(0) invert(1);
-
-    mix-blend-mode: screen;
-}
-
-
-/* Hakkımızda bölümünde logo */
-
-.section-logo-float {
-    position: absolute;
-
-    right: 7vw;
-    top: 225px;
-
-    width: 180px;
-    height: 135px;
-
-    opacity: .20;
-
-    pointer-events: none;
-}
-
-.section-logo-float img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-
-    filter: brightness(0) invert(1);
-}
-
-
-/* Yayınlar üstünde küçük logo */
-
-.section-logo-center {
-    display: flex;
-    justify-content: flex-end;
-
-    margin-top: -35px;
-    margin-bottom: 15px;
-
-    pointer-events: none;
-}
-
-.section-logo-center img {
-    width: 130px;
-    height: 85px;
-
-    object-fit: contain;
-
-    filter: brightness(0) invert(1);
-
-    opacity: .72;
-}
-
-
-/* Topluluk bölümünde büyük logo */
-
-.community-logo-large {
-    position: absolute;
-
-    right: 8vw;
-    top: 18%;
-
-    width: min(330px, 28vw);
-    height: 250px;
-
-    z-index: 1;
-
-    opacity: .18;
-
-    transform: rotate(-8deg);
-
-    pointer-events: none;
-}
-
-.community-logo-large img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-
-    filter: brightness(0) invert(1);
-
-    mix-blend-mode: screen;
-}
-
-
-/* Footer */
-
-.footer-logo-mark {
-    display: flex;
-    align-items: center;
-
-    width: 140px;
-    height: 85px;
-}
-
-.footer-logo-mark img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-
-    filter: brightness(0) invert(1);
-
-    opacity: .85;
-}
-
-
-@media (max-width: 900px) {
-
-    .site-logo {
-        width: 45px;
-        height: 32px;
-    }
-
-    .brand-lockup {
-        min-width: auto;
-        gap: 9px;
-    }
-
-    .hero-logo-mark {
-        right: 3vw;
-        top: 55px;
-
-        width: 185px;
-        height: 125px;
-
-        opacity: .15;
-    }
-
-    .section-logo-float {
-        top: 180px;
-        right: 5vw;
-
-        width: 125px;
-        height: 95px;
-
-        opacity: .13;
-    }
-
-    .section-logo-center img {
-        width: 95px;
-        height: 65px;
-    }
-
-    .community-logo-large {
-        right: 4vw;
-        top: 12%;
-
-        width: 230px;
-        height: 175px;
-
-        opacity: .13;
-    }
-
-    .footer-logo-mark {
-        width: 120px;
-        height: 70px;
-    }
-}
-
-
-@media (max-width: 600px) {
-
-    .site-logo {
-        width: 38px;
-        height: 28px;
-    }
-
-    .hero-logo-mark {
-        top: 42px;
-        right: 1vw;
-
-        width: 120px;
-        height: 82px;
-
-        opacity: .12;
-    }
-
-    .section-logo-float {
-        top: 145px;
-        right: 3vw;
-
-        width: 90px;
-        height: 68px;
-
-        opacity: .10;
-    }
-
-    .section-logo-center {
-        justify-content: center;
-
-        margin-top: -20px;
-        margin-bottom: 5px;
-    }
-
-    .section-logo-center img {
-        width: 82px;
-        height: 58px;
-
-        opacity: .55;
-    }
-
-    .community-logo-large {
-        right: 2vw;
-        top: 20%;
-
-        width: 160px;
-        height: 120px;
-
-        opacity: .10;
-    }
-
-    .footer-logo-mark {
-        width: 110px;
-        height: 65px;
-    }
-}
-
 /* =========================================================
    TABLET
 ========================================================= */
@@ -1671,7 +1393,7 @@ footer {
 
 
 /* =========================================================
-   KICK YAYINLARI
+   KICK CANLI YAYINLAR
 ========================================================= */
 
 .kick-stream-grid {
@@ -1684,16 +1406,12 @@ footer {
     position: relative;
     overflow: hidden;
     min-height: 250px;
-
-    background:
-        linear-gradient(145deg, #171717, #070707);
-
+    background: linear-gradient(145deg, #161616, #070707);
     border: 1px solid rgba(255,255,255,.13);
-
-    transition:
-        transform .3s ease,
-        border-color .3s ease,
-        background .3s ease;
+    transition: transform .3s ease,
+                border-color .3s ease,
+                background .3s ease,
+                box-shadow .3s ease;
 }
 
 .kick-stream-card::before {
@@ -1701,7 +1419,6 @@ footer {
     position: absolute;
     inset: 0;
     pointer-events: none;
-
     background:
         linear-gradient(
             135deg,
@@ -1714,47 +1431,66 @@ footer {
 .kick-stream-card:hover {
     transform: translateY(-6px);
     border-color: rgba(255,255,255,.35);
-    background:
-        linear-gradient(145deg, #202020, #090909);
+    background: linear-gradient(145deg, #202020, #090909);
+}
+
+.kick-stream-card.is-live {
+    border-color: rgba(255,255,255,.70);
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.04),
+        0 0 38px rgba(255,255,255,.055);
+}
+
+.kick-stream-card.is-live::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #ededed;
+    box-shadow: 0 0 20px rgba(255,255,255,.35);
 }
 
 .kick-card-number {
     position: absolute;
     top: 14px;
     left: 16px;
-    z-index: 2;
-
+    z-index: 3;
     color: #555;
-
     font-family: "Oswald", sans-serif;
     font-size: 12px;
     letter-spacing: .12em;
 }
 
-.kick-card-badge {
+.kick-card-badge,
+.kick-live-badge {
     position: absolute;
     top: 14px;
     right: 14px;
-    z-index: 2;
-
-    padding: 6px 8px;
-
-    color: #070707;
-    background: #d9d9d9;
-
+    z-index: 3;
+    padding: 6px 9px;
     font-size: 7px;
     font-weight: 900;
-    letter-spacing: .15em;
+    letter-spacing: .14em;
+}
+
+.kick-card-badge {
+    color: #070707;
+    background: #d8d8d8;
+}
+
+.kick-live-badge {
+    color: #070707;
+    background: #f0f0f0;
+    box-shadow: 0 0 18px rgba(255,255,255,.16);
 }
 
 .kick-card-body {
     position: relative;
     z-index: 2;
-
     min-height: 250px;
-
     padding: 55px 22px 20px;
-
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -1764,58 +1500,80 @@ footer {
     position: absolute;
     left: 22px;
     top: 36px;
-
     color: rgba(255,255,255,.055);
-
     font-family: "Oswald", sans-serif;
     font-size: 82px;
     line-height: .8;
     font-weight: 700;
-
-    pointer-events: none;
-    user-select: none;
 }
 
 .kick-name {
     color: #ededed;
-
     font-family: "Oswald", sans-serif;
     font-size: 28px;
     line-height: 1;
     letter-spacing: -.02em;
-
     text-transform: uppercase;
+}
+
+.is-live .kick-name {
+    color: #fff;
 }
 
 .kick-platform {
     margin-top: 8px;
-
     color: #5b5b5b;
-
     font-size: 8px;
     font-weight: 700;
     letter-spacing: .2em;
 }
 
+.kick-stream-title {
+    margin-top: 10px;
+    max-width: 100%;
+    color: #777;
+    font-size: 9px;
+    line-height: 1.45;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.kick-status-row {
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.kick-viewers {
+    color: #bcbcbc;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: .11em;
+}
+
+.kick-viewers.offline {
+    color: #4e4e4e;
+}
+
+.is-live .kick-viewers {
+    color: #eee;
+}
+
 .kick-watch {
     width: fit-content;
-
-    margin-top: 20px;
-    padding: 11px 14px;
-
+    padding: 10px 13px;
     display: inline-flex;
     align-items: center;
     gap: 14px;
-
     border: 1px solid #404040;
     background: #0c0c0c;
-
     color: #bdbdbd;
-
     font-size: 8px;
     font-weight: 800;
     letter-spacing: .15em;
-
     transition: .25s;
 }
 
@@ -1825,142 +1583,32 @@ footer {
     color: #050505;
 }
 
-
-/* =========================================================
-   KICK PLAYER MODAL
-========================================================= */
-
-.kick-modal {
-    position: fixed;
-    inset: 0;
-
-    z-index: 9000;
-
-    display: none;
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
-
-    background: rgba(0,0,0,.92);
-
-    backdrop-filter: blur(13px);
+.is-live .kick-watch {
+    border-color: #666;
+    color: #e6e6e6;
 }
 
-.kick-modal.open {
-    display: flex;
-}
-
-.kick-modal-box {
-    width: min(1200px, 100%);
-
-    background: #080808;
-
-    border: 1px solid #343434;
-
-    box-shadow:
-        0 35px 120px rgba(0,0,0,.85);
-}
-
-.kick-modal-header {
-    min-height: 62px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 18px;
-
-    border-bottom: 1px solid #222;
-}
-
-.kick-modal-title {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.kick-modal-title strong {
-    color: #ddd;
-
-    font-family: "Oswald", sans-serif;
-
-    font-size: 20px;
-}
-
-.kick-modal-title span {
+.kick-empty {
+    grid-column: 1 / -1;
+    min-height: 220px;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    border: 1px dashed #303030;
     color: #555;
-
-    font-size: 8px;
-    letter-spacing: .18em;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .16em;
+    line-height: 1.8;
 }
-
-.kick-modal-close {
-    width: 36px;
-    height: 36px;
-
-    border: 1px solid #333;
-
-    background: transparent;
-
-    color: #aaa;
-
-    font-size: 22px;
-
-    transition: .25s;
-}
-
-.kick-modal-close:hover {
-    color: #fff;
-    border-color: #777;
-}
-
-.kick-player-wrap {
-    width: 100%;
-
-    aspect-ratio: 16 / 9;
-
-    background: #000;
-}
-
-.kick-player-wrap iframe {
-    width: 100%;
-    height: 100%;
-
-    display: block;
-
-    border: 0;
-}
-
-.kick-modal-footer {
-    min-height: 52px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 18px;
-
-    border-top: 1px solid #222;
-
-    color: #4f4f4f;
-
-    font-size: 8px;
-    letter-spacing: .14em;
-}
-
 
 @media (max-width: 950px) {
-
     .kick-stream-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-
 }
 
-
 @media (max-width: 600px) {
-
     .kick-stream-grid {
         grid-template-columns: 1fr;
     }
@@ -1970,78 +1618,13 @@ footer {
         min-height: 220px;
     }
 
-    .kick-modal {
-        padding: 10px;
+    .kick-status-row {
+        align-items: stretch;
+        flex-direction: column;
     }
 
-    .kick-modal-title span {
-        display: none;
-    }
-
-    .kick-modal-footer {
-        min-height: 46px;
-    }
-
-}
-
-
-
-/* =========================================================
-   KODLANMIŞ NBDS LOGOSU
-   Harici PNG/JPG yok; logo SVG olarak HTML içine gömülüdür.
-========================================================= */
-
-.nbds-logo-svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-    color: #f2f2f2;
-    overflow: visible;
-}
-
-.nbds-logo-svg path {
-    fill: currentColor;
-}
-
-.brand-lockup .nbds-logo-svg {
-    width: 56px;
-    height: 39px;
-    flex: 0 0 auto;
-}
-
-.hero-logo-mark .nbds-logo-svg {
-    width: 100%;
-    height: 100%;
-    color: rgba(255,255,255,.88);
-}
-
-.section-logo-float .nbds-logo-svg {
-    width: 100%;
-    height: 100%;
-    color: rgba(255,255,255,.82);
-}
-
-.section-logo-center .nbds-logo-svg {
-    width: 130px;
-    height: 85px;
-    color: #d0d0d0;
-}
-
-.community-logo-large .nbds-logo-svg {
-    width: 100%;
-    height: 100%;
-    color: rgba(255,255,255,.75);
-}
-
-.footer-logo-mark .nbds-logo-svg {
-    width: 100%;
-    height: 100%;
-    color: #d0d0d0;
-}
-
-@media (max-width: 900px) {
-    .brand-lockup .nbds-logo-svg {
-        width: 45px;
-        height: 32px;
+    .kick-watch {
+        width: 100%;
+        justify-content: space-between;
     }
 }
