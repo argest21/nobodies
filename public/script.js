@@ -196,6 +196,11 @@ const kickClose =
         "kickModalClose"
     );
 
+const kickDirectLink =
+    document.getElementById(
+        "kickDirectLink"
+    );
+
 
 let kickCreators = [];
 
@@ -338,13 +343,26 @@ function createKickCards(creators) {
                                           `
                                 }
 
-                                <button
-                                    type="button"
-                                    class="kick-watch"
-                                    data-kick-user="${safeName}"
-                                >
-                                    YAYINI AÇ ↗
-                                </button>
+                                <div class="kick-actions">
+
+                                    <button
+                                        type="button"
+                                        class="kick-watch"
+                                        data-kick-user="${safeName}"
+                                    >
+                                        YAYINI AÇ ↗
+                                    </button>
+
+                                    <a
+                                        class="kick-go"
+                                        href="https://kick.com/${encodeURIComponent(creator.username)}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        KICK'E GİT ↗
+                                    </a>
+
+                                </div>
 
                             </div>
 
@@ -476,6 +494,15 @@ function openKickPlayer(
 
     kickTitle.textContent =
         username;
+
+    const kickUrl =
+        `https://kick.com/${encodeURIComponent(
+            username
+        )}`;
+
+    if (kickDirectLink) {
+        kickDirectLink.href = kickUrl;
+    }
 
     kickPlayer.src =
         `https://player.kick.com/${encodeURIComponent(
