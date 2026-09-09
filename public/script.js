@@ -2,9 +2,6 @@
 // NOBODIES - GENEL JAVASCRIPT
 // =========================================
 
-
-// YÜKLEME EKRANI
-
 window.addEventListener("load", () => {
 
     const loader =
@@ -19,18 +16,12 @@ window.addEventListener("load", () => {
             "opacity .5s ease";
 
         setTimeout(() => {
-
-            loader.style.display =
-                "none";
-
+            loader.style.display = "none";
         }, 500);
 
     }, 900);
-
 });
 
-
-// YUMUŞAK KAYDIRMA
 
 document.querySelectorAll(
     'a[href^="#"]'
@@ -53,14 +44,10 @@ document.querySelectorAll(
                 behavior: "smooth",
                 block: "start"
             });
-
         }
     );
-
 });
 
-
-// İSTATİSTİK SAYACI
 
 const counters =
     document.querySelectorAll(
@@ -92,7 +79,6 @@ if (counters.length) {
                     const duration =
                         1200;
 
-
                     function update(time) {
 
                         const progress =
@@ -102,7 +88,6 @@ if (counters.length) {
                                 1
                             );
 
-
                         const eased =
                             1 -
                             Math.pow(
@@ -110,23 +95,17 @@ if (counters.length) {
                                 3
                             );
 
-
                         element.textContent =
                             Math.floor(
                                 target * eased
                             );
 
-
                         if (progress < 1) {
-
                             requestAnimationFrame(
                                 update
                             );
-
                         }
-
                     }
-
 
                     requestAnimationFrame(
                         update
@@ -135,32 +114,23 @@ if (counters.length) {
                     counterObserver.unobserve(
                         element
                     );
-
                 });
-
             },
             {
                 threshold: 0.5
             }
         );
 
-
     counters.forEach(counter => {
-
         counterObserver.observe(counter);
-
     });
-
 }
 
-
-// HERO PARALLAX
 
 const hero =
     document.querySelector(
         ".hero-content"
     );
-
 
 window.addEventListener(
     "mousemove",
@@ -173,126 +143,33 @@ window.addEventListener(
                 event.clientX /
                 window.innerWidth -
                 0.5
-            ) * 6;
-
+            ) * 5;
 
         const y =
             (
                 event.clientY /
                 window.innerHeight -
                 0.5
-            ) * 4;
-
+            ) * 3;
 
         hero.style.transform =
             `translate(${x}px, ${y}px)`;
-
     }
 );
 
 
-// OTOMATİK YIL
-
 const year =
     document.getElementById("year");
 
-
 if (year) {
-
     year.textContent =
         new Date().getFullYear();
-
 }
 
 
-// SCROLL ANİMASYONLARI
-
-const revealElements =
-    document.querySelectorAll(
-        ".member-card, .stream-card, .gallery-item, .stat"
-    );
-
-
-if (revealElements.length) {
-
-    revealElements.forEach(element => {
-
-        element.style.opacity = "0";
-
-        element.style.transform =
-            "translateY(25px)";
-
-        element.style.transition =
-            "opacity .7s ease, transform .7s ease";
-
-    });
-
-
-    const revealObserver =
-        new IntersectionObserver(
-            entries => {
-
-                entries.forEach(entry => {
-
-                    if (!entry.isIntersecting)
-                        return;
-
-                    entry.target.style.opacity =
-                        "1";
-
-                    entry.target.style.transform =
-                        "translateY(0)";
-
-                    revealObserver.unobserve(
-                        entry.target
-                    );
-
-                });
-
-            },
-            {
-                threshold: 0.12
-            }
-        );
-
-
-    revealElements.forEach(element => {
-
-        revealObserver.observe(element);
-
-    });
-
-}
-
-
-// =========================================
-// KICK YAYINCILARI
-// =========================================
-
-const kickCreators = [
-    "Minik",
-    "NoyrGod",
-    "glentiss",
-    "Cengizhan",
-    "yyido",
-    "vactrass",
-    "aleyra",
-    "sercantall",
-    "dantefps",
-    "verdaxo",
-    "mezofps",
-    "why_not3",
-    "ssxrb",
-    "atapela",
-    "vidarinyo",
-    "lynn0133",
-    "qqhako",
-    "diona123",
-    "runzeus",
-    "tunw12",
-    "phonyag"
-];
-
+/* =========================================
+   KICK CANLI YAYINLAR
+========================================= */
 
 const kickGrid =
     document.getElementById(
@@ -320,84 +197,163 @@ const kickClose =
     );
 
 
-// KARTLARI OLUŞTUR
+let kickCreators = [];
 
-function createKickCards() {
+
+function escapeHtml(text) {
+
+    return String(text)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+
+function createKickCards(creators) {
 
     if (!kickGrid) return;
 
+    const sorted =
+        [...creators].sort(
+            (a, b) =>
+                Number(b.live) -
+                Number(a.live)
+        );
+
+
+    if (!sorted.length) {
+
+        kickGrid.innerHTML = `
+            <div class="kick-empty">
+                YAYINCILAR YÜKLENİYOR...
+            </div>
+        `;
+
+        return;
+    }
+
 
     kickGrid.innerHTML =
-        kickCreators
-            .map((username, index) => {
+        sorted.map(
+            (creator, index) => {
+
+                const safeName =
+                    escapeHtml(
+                        creator.username
+                    );
+
+                const isLive =
+                    Boolean(
+                        creator.live
+                    );
+
+                const viewers =
+                    Number(
+                        creator.viewerCount || 0
+                    ).toLocaleString(
+                        "tr-TR"
+                    );
+
+                const cardClass =
+                    isLive
+                        ? "kick-stream-card is-live"
+                        : "kick-stream-card";
+
+                const badge =
+                    isLive
+                        ? `
+                            <div class="kick-live-badge">
+                                ● CANLI
+                            </div>
+                          `
+                        : `
+                            <div class="kick-card-badge">
+                                KICK
+                            </div>
+                          `;
+
+                const streamTitle =
+                    creator.title
+                        ? `
+                            <div class="kick-stream-title">
+                                ${escapeHtml(
+                                    creator.title
+                                )}
+                            </div>
+                          `
+                        : "";
+
+                const platform =
+                    creator.category
+                        ? escapeHtml(
+                            creator.category
+                        )
+                        : "FIVEM";
+
 
                 return `
-
                     <article
-                        class="kick-stream-card"
+                        class="${cardClass}"
                     >
 
-                        <div
-                            class="kick-card-number"
-                        >
+                        <div class="kick-card-number">
                             ${String(
                                 index + 1
                             ).padStart(2, "0")}
                         </div>
 
+                        ${badge}
 
-                        <div
-                            class="kick-card-badge"
-                        >
-                            KICK
-                        </div>
+                        <div class="kick-card-body">
 
-
-                        <div
-                            class="kick-card-body"
-                        >
-
-                            <div
-                                class="kick-symbol"
-                            >
+                            <div class="kick-symbol">
                                 N
                             </div>
 
-
-                            <div
-                                class="kick-name"
-                            >
-                                ${escapeHtml(
-                                    username
-                                )}
+                            <div class="kick-name">
+                                ${safeName}
                             </div>
 
-
-                            <div
-                                class="kick-platform"
-                            >
-                                KICK / FIVEM YAYINCISI
+                            <div class="kick-platform">
+                                KICK / ${platform}
                             </div>
 
+                            ${streamTitle}
 
-                            <button
-                                type="button"
-                                class="kick-watch"
-                                data-kick-user="${escapeHtml(
-                                    username
-                                )}"
-                            >
-                                YAYINI AÇ ↗
-                            </button>
+                            <div class="kick-status-row">
+
+                                ${
+                                    isLive
+                                        ? `
+                                            <span class="kick-viewers">
+                                                ● ${viewers} İZLEYİCİ
+                                            </span>
+                                          `
+                                        : `
+                                            <span class="kick-viewers offline">
+                                                ÇEVRİMDIŞI
+                                            </span>
+                                          `
+                                }
+
+                                <button
+                                    type="button"
+                                    class="kick-watch"
+                                    data-kick-user="${safeName}"
+                                >
+                                    YAYINI AÇ ↗
+                                </button>
+
+                            </div>
 
                         </div>
 
                     </article>
-
                 `;
-
-            })
-            .join("");
+            }
+        ).join("");
 
 
     kickGrid
@@ -418,13 +374,97 @@ function createKickCards() {
             );
 
         });
-
 }
 
 
-// KICK PLAYER AÇ
+async function loadKickStatus() {
 
-function openKickPlayer(username) {
+    if (!kickGrid) return;
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/kick-status",
+                {
+                    cache: "no-store"
+                }
+            );
+
+        if (!response.ok) {
+
+            throw new Error(
+                "KICK durumu alınamadı."
+            );
+        }
+
+
+        const data =
+            await response.json();
+
+
+        kickCreators =
+            Array.isArray(
+                data.creators
+            )
+                ? data.creators
+                : [];
+
+
+        createKickCards(
+            kickCreators
+        );
+
+
+        const liveStatus =
+            document.querySelector(
+                ".streams .live-status"
+            );
+
+
+        if (
+            liveStatus &&
+            typeof data.liveCount === "number"
+        ) {
+
+            if (data.liveCount > 0) {
+
+                liveStatus.innerHTML =
+                    `<span></span>
+                     ${data.liveCount}
+                     YAYINCI CANLI`;
+
+            } else {
+
+                liveStatus.innerHTML =
+                    `<span></span>
+                     ŞU AN CANLI YAYIN YOK`;
+
+            }
+        }
+
+
+    } catch (error) {
+
+        console.error(
+            "KICK durum hatası:",
+            error
+        );
+
+        kickGrid.innerHTML = `
+            <div class="kick-empty">
+                CANLI DURUMU ALINAMADI.
+                <br>
+                BİRKAÇ SANİYE SONRA TEKRAR DENE.
+            </div>
+        `;
+    }
+}
+
+
+function openKickPlayer(
+    username
+) {
 
     if (
         !kickModal ||
@@ -434,29 +474,22 @@ function openKickPlayer(username) {
         return;
     }
 
-
     kickTitle.textContent =
         username;
-
 
     kickPlayer.src =
         `https://player.kick.com/${encodeURIComponent(
             username
-        )}`;
-
+        )}?autoplay=false&muted=false`;
 
     kickModal.classList.add(
         "open"
     );
 
-
     document.body.style.overflow =
         "hidden";
-
 }
 
-
-// KICK PLAYER KAPAT
 
 function closeKickPlayer() {
 
@@ -467,18 +500,14 @@ function closeKickPlayer() {
         return;
     }
 
-
     kickModal.classList.remove(
         "open"
     );
 
-
     kickPlayer.src = "";
-
 
     document.body.style.overflow =
         "";
-
 }
 
 
@@ -488,7 +517,6 @@ if (kickClose) {
         "click",
         closeKickPlayer
     );
-
 }
 
 
@@ -502,14 +530,10 @@ if (kickModal) {
                 event.target ===
                 kickModal
             ) {
-
                 closeKickPlayer();
-
             }
-
         }
     );
-
 }
 
 
@@ -517,32 +541,18 @@ document.addEventListener(
     "keydown",
     event => {
 
-        if (
-            event.key === "Escape"
-        ) {
-
+        if (event.key === "Escape") {
             closeKickPlayer();
-
         }
-
     }
 );
 
 
-// HTML GÜVENLİĞİ
+// İLK YÜKLEME
+loadKickStatus();
 
-function escapeHtml(text) {
-
-    return String(text)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-
-}
-
-
-// KICK KARTLARINI BAŞLAT
-
-createKickCards();
+// SAYFA AÇIK KALIRSA 60 SANİYEDE BİR YENİLE
+setInterval(
+    loadKickStatus,
+    60 * 1000
+);
