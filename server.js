@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 const publicFolder = path.join(__dirname, "public");
 const uploadFolder = path.join(publicFolder, "uploads");
+const galleryFile = path.join(__dirname, "galeri.json");
 
 if (!fs.existsSync(uploadFolder)) {
     fs.mkdirSync(uploadFolder, { recursive: true });
@@ -15,8 +16,12 @@ if (!fs.existsSync(uploadFolder)) {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 app.use(express.static(publicFolder));
+
+
+/* ================================
+   NBDS-GALERİ
+================================ */
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -40,7 +45,7 @@ const upload = multer({
     storage,
 
     limits: {
-        fileSize: 100 * 1024 * 1024
+        fileSize: 500 * 1024 * 1024
     },
 
     fileFilter: (req, file, cb) => {
@@ -58,16 +63,15 @@ const upload = multer({
         if (allowedTypes.includes(file.mimetype)) {
             cb(null, true);
         } else {
-            cb(new Error("Sadece fotoğraf veya video yükleyebilirsin."));
+            cb(
+                new Error(
+                    "Sadece fotoğraf veya video yükleyebilirsin."
+                )
+            );
         }
     }
 });
 
-
-/*
-    NBDS-GALERİ
-    Fotoğraf / video yükleme
-*/
 
 app.post(
     "/api/galeri/yukle",
@@ -79,39 +83,31 @@ app.post(
             if (!req.file) {
                 return res.status(400).json({
                     success: false,
-                    message: "Lütfen bir fotoğraf veya video seç."
+                    message:
+                        "Lütfen bir fotoğraf veya video seç."
                 });
             }
 
             const isim =
                 (req.body.isim || "NBDS Üyesi")
-                .trim()
-                .substring(0, 40);
+                    .trim()
+                    .substring(0, 40);
 
             const dosyaUrl =
                 "/uploads/" +
                 req.file.filename;
 
-            const galeriDosyasi =
-                path.join(
-                    __dirname,
-                    "galeri.json"
-                );
-
             let galeri = [];
 
-            if (fs.existsSync(galeriDosyasi)) {
+            if (fs.existsSync(galleryFile)) {
 
                 try {
-
-                    galeri =
-                        JSON.parse(
-                            fs.readFileSync(
-                                galeriDosyasi,
-                                "utf8"
-                            )
-                        );
-
+                    galeri = JSON.parse(
+                        fs.readFileSync(
+                            galleryFile,
+                            "utf8"
+                        )
+                    );
                 } catch {
                     galeri = [];
                 }
@@ -130,7 +126,7 @@ app.post(
             galeri.unshift(yeniIcerik);
 
             fs.writeFileSync(
-                galeriDosyasi,
+                galleryFile,
                 JSON.stringify(
                     galeri,
                     null,
@@ -140,7 +136,8 @@ app.post(
 
             res.json({
                 success: true,
-                message: "İçerik galeriye eklendi.",
+                message:
+                    "İçerik galeriye eklendi.",
                 icerik: yeniIcerik
             });
 
@@ -150,41 +147,30 @@ app.post(
 
             res.status(500).json({
                 success: false,
-                message: "Yükleme sırasında bir hata oluştu."
+                message:
+                    "Yükleme sırasında bir hata oluştu."
             });
         }
     }
 );
 
 
-/*
-    Galeri içeriklerini getir
-*/
-
 app.get(
     "/api/galeri",
     (req, res) => {
 
-        const galeriDosyasi =
-            path.join(
-                __dirname,
-                "galeri.json"
-            );
-
-        if (!fs.existsSync(galeriDosyasi)) {
-
+        if (!fs.existsSync(galleryFile)) {
             return res.json([]);
         }
 
         try {
 
-            const galeri =
-                JSON.parse(
-                    fs.readFileSync(
-                        galeriDosyasi,
-                        "utf8"
-                    )
-                );
+            const galeri = JSON.parse(
+                fs.readFileSync(
+                    galleryFile,
+                    "utf8"
+                )
+            );
 
             res.json(galeri);
 
@@ -196,34 +182,217 @@ app.get(
 );
 
 
-/*
-    Multer hataları
-*/
+/* ================================
+   KICK CANLI YAYIN DURUMU
+================================ */
 
-app.use((error, req, res, next) => {
+const kickCreators = [
+    "Minik",
+    "NoyrGod",
+    "glentiss",
+    "Cengizhan",
+    "yyido",
+    "vactrass",
+    "aleyra",
+    "sercantall",
+    "dantefps",
+    "verdaxo",
+    "mezofps",
+    "why_not3",
+    "ssxrb",
+    "atapela",
+    "vidarinyo",
+    "lynn0133",
+    "qqhako",
+    "diona123",
+    "runzeus",
+    "tunw12",
+    "phonyag"
+];
 
-    if (error instanceof multer.MulterError) {
+let kickStatusCache = kickCreators.map(username => ({
+    username,
+    live: false,
+    viewerCount: 0,
+    title: "",
+    category: "",
+    checkedAt: null
+}));
 
-        if (error.code === "LIMIT_FILE_SIZE") {
+async function checkKickCreator(username) {
+
+    const url =
+        "https://kick.com/api/v2/channels/" +
+        encodeURIComponent(username);
+
+    try {
+
+        const response = await fetch(
+            url,
+            {
+                headers: {
+                    "Accept": "application/json",
+                    "User-Agent":
+                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131 Safari/537.36",
+                    "Referer": "https://kick.com/"
+                },
+                signal: AbortSignal.timeout(8000)
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                `KICK HTTP ${response.status}`
+            );
+        }
+
+        const data = await response.json();
+
+        const stream =
+            data && data.livestream
+                ? data.livestream
+                : null;
+
+        const categories =
+            stream &&
+            Array.isArray(stream.categories)
+                ? stream.categories
+                : [];
+
+        return {
+            username,
+            live: Boolean(stream),
+            viewerCount:
+                stream
+                    ? Number(stream.viewer_count || 0)
+                    : 0,
+            title:
+                stream
+                    ? String(stream.session_title || "")
+                    : "",
+            category:
+                categories.length
+                    ? String(categories[0].name || "")
+                    : "",
+            checkedAt:
+                new Date().toISOString()
+        };
+
+    } catch (error) {
+
+        console.error(
+            `KICK durum kontrolü başarısız (${username}):`,
+            error.message
+        );
+
+        const previous =
+            kickStatusCache.find(
+                item =>
+                    item.username.toLowerCase() ===
+                    username.toLowerCase()
+            );
+
+        return {
+            username,
+            live:
+                previous
+                    ? previous.live
+                    : false,
+            viewerCount:
+                previous
+                    ? previous.viewerCount
+                    : 0,
+            title:
+                previous
+                    ? previous.title
+                    : "",
+            category:
+                previous
+                    ? previous.category
+                    : "",
+            checkedAt:
+                new Date().toISOString(),
+            stale: true
+        };
+    }
+}
+
+async function refreshKickStatus() {
+
+    const results =
+        await Promise.all(
+            kickCreators.map(
+                checkKickCreator
+            )
+        );
+
+    kickStatusCache =
+        results.sort(
+            (a, b) =>
+                Number(b.live) -
+                Number(a.live)
+        );
+}
+
+refreshKickStatus();
+
+setInterval(
+    refreshKickStatus,
+    60 * 1000
+);
+
+app.get(
+    "/api/kick-status",
+    (req, res) => {
+
+        res.json({
+            success: true,
+            liveCount:
+                kickStatusCache.filter(
+                    item => item.live
+                ).length,
+            checkedAt:
+                new Date().toISOString(),
+            creators:
+                kickStatusCache
+        });
+    }
+);
+
+
+/* ================================
+   HATALAR
+================================ */
+
+app.use(
+    (error, req, res, next) => {
+
+        if (error instanceof multer.MulterError) {
+
+            if (
+                error.code ===
+                "LIMIT_FILE_SIZE"
+            ) {
+                return res.status(400).json({
+                    success: false,
+                    message:
+                        "Dosya çok büyük. Maksimum 500 MB."
+                });
+            }
+        }
+
+        if (error) {
 
             return res.status(400).json({
                 success: false,
                 message:
-                    "Dosya çok büyük. Maksimum 100 MB."
+                    error.message
             });
         }
+
+        next();
     }
-
-    if (error) {
-
-        return res.status(400).json({
-            success: false,
-            message: error.message
-        });
-    }
-
-    next();
-});
+);
 
 
 app.listen(PORT, () => {
@@ -232,4 +401,7 @@ app.listen(PORT, () => {
         `NOBODIES çalışıyor - port ${PORT}`
     );
 
+    console.log(
+        "KICK canlı durum sistemi aktif."
+    );
 });
