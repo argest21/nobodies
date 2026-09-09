@@ -1,9 +1,7 @@
 // =========================================
-// NBDS-GALERİ JAVASCRIPT
+// NBDS-GALERİ
+// Maksimum dosya boyutu: 500 MB
 // =========================================
-
-
-// ELEMENTLER
 
 const uploadButton =
     document.getElementById("uploadButton");
@@ -39,9 +37,9 @@ const year =
     document.getElementById("year");
 
 
-// =========================================
-// YIL
-// =========================================
+const MAX_FILE_SIZE =
+    500 * 1024 * 1024;
+
 
 if (year) {
     year.textContent =
@@ -49,136 +47,153 @@ if (year) {
 }
 
 
-// =========================================
-// YÜKLEME PENCERESİNİ AÇ
-// =========================================
+// MODAL AÇ
 
-uploadButton.addEventListener(
-    "click",
-    () => {
+function openModal() {
 
-        uploadModal.classList.add("open");
+    if (!uploadModal) return;
 
-        document.body.style.overflow =
-            "hidden";
+    uploadModal.classList.add(
+        "open"
+    );
 
-    }
-);
-
-
-// =========================================
-// YÜKLEME PENCERESİNİ KAPAT
-// =========================================
-
-function closeModal() {
-
-    uploadModal.classList.remove("open");
+    uploadModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
 
     document.body.style.overflow =
-        "";
-
+        "hidden";
 }
 
 
-closeButton.addEventListener(
-    "click",
-    closeModal
-);
+// MODAL KAPAT
+
+function closeModal() {
+
+    if (!uploadModal) return;
+
+    uploadModal.classList.remove(
+        "open"
+    );
+
+    uploadModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.style.overflow =
+        "";
+}
 
 
-// Pencerenin dışına tıklayınca kapat
-
-uploadModal.addEventListener(
-    "click",
-    event => {
-
-        if (
-            event.target ===
-            uploadModal
-        ) {
-
-            closeModal();
-
-        }
-
-    }
-);
+if (uploadButton) {
+    uploadButton.addEventListener(
+        "click",
+        openModal
+    );
+}
 
 
-// ESC TUŞU
+if (closeButton) {
+    closeButton.addEventListener(
+        "click",
+        closeModal
+    );
+}
+
+
+document.querySelectorAll(
+    "[data-close-modal]"
+).forEach(element => {
+
+    element.addEventListener(
+        "click",
+        closeModal
+    );
+
+});
+
 
 document.addEventListener(
     "keydown",
     event => {
 
-        if (event.key === "Escape") {
-
+        if (
+            event.key === "Escape"
+        ) {
             closeModal();
-
         }
 
     }
 );
 
 
-// =========================================
-// DOSYA SEÇİLİNCE BOYUTU GÖSTER
-// =========================================
+// DOSYA SEÇİLDİĞİNDE BİLGİ
 
-fileInput.addEventListener(
-    "change",
-    () => {
+if (fileInput) {
 
-        const file =
-            fileInput.files[0];
+    fileInput.addEventListener(
+        "change",
+        () => {
 
-        if (!file) {
+            const file =
+                fileInput.files[0];
+
+            if (!file) {
+
+                fileInfo.textContent =
+                    "Maksimum dosya boyutu: 500 MB";
+
+                fileInfo.style.color =
+                    "#555";
+
+                return;
+            }
+
+
+            const sizeMB =
+                file.size /
+                1024 /
+                1024;
+
 
             fileInfo.textContent =
-                "Maksimum dosya boyutu: 100 MB";
-
-            return;
-
-        }
+                `${file.name} • ${sizeMB.toFixed(2)} MB`;
 
 
-        const sizeMB =
-            file.size /
-            1024 /
-            1024;
+            if (
+                file.size >
+                MAX_FILE_SIZE
+            ) {
 
+                fileInfo.textContent =
+                    "HATA: Dosya 500 MB'dan büyük.";
 
-        fileInfo.textContent =
-            `${file.name} • ${sizeMB.toFixed(2)} MB`;
+                fileInfo.style.color =
+                    "#f06b6b";
 
+            } else {
 
-        if (sizeMB > 100) {
+                fileInfo.style.color =
+                    "#777";
 
-            fileInfo.textContent =
-                "HATA: Dosya 100 MB'dan büyük.";
-
-            fileInfo.style.color =
-                "#ff4444";
-
-        } else {
-
-            fileInfo.style.color =
-                "#858585";
+            }
 
         }
+    );
 
-    }
-);
+}
 
 
-// =========================================
-// MESAJ GÖSTER
-// =========================================
+// MESAJ
 
 function showMessage(
     message,
     type = "normal"
 ) {
+
+    if (!uploadMessage) return;
 
     uploadMessage.textContent =
         message;
@@ -191,249 +206,248 @@ function showMessage(
     if (type === "error") {
 
         uploadMessage.style.color =
-            "#ff5555";
+            "#f06b6b";
 
         uploadMessage.style.borderColor =
-            "#ff5555";
+            "#793939";
 
     } else {
 
         uploadMessage.style.color =
-            "#d8ff00";
+            "#d8d8d8";
 
         uploadMessage.style.borderColor =
-            "#d8ff00";
+            "#555";
 
     }
-
 }
 
 
-// =========================================
 // FORM GÖNDER
-// =========================================
 
-uploadForm.addEventListener(
-    "submit",
-    async event => {
+if (uploadForm) {
 
-        event.preventDefault();
+    uploadForm.addEventListener(
+        "submit",
+        async event => {
 
-
-        const file =
-            fileInput.files[0];
-
-        const isim =
-            document.getElementById(
-                "isim"
-            ).value.trim();
+            event.preventDefault();
 
 
-        // İSİM KONTROL
+            const file =
+                fileInput.files[0];
 
-        if (!isim) {
-
-            showMessage(
-                "Lütfen ismini yaz.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        // DOSYA KONTROL
-
-        if (!file) {
-
-            showMessage(
-                "Lütfen fotoğraf veya video seç.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        // BOYUT KONTROL
-
-        if (
-            file.size >
-            100 * 1024 * 1024
-        ) {
-
-            showMessage(
-                "Dosya çok büyük. Maksimum 100 MB.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        // TİP KONTROL
-
-        const allowedTypes = [
-
-            "image/jpeg",
-            "image/png",
-            "image/webp",
-            "image/gif",
-
-            "video/mp4",
-            "video/webm",
-            "video/quicktime"
-
-        ];
-
-
-        if (
-            !allowedTypes.includes(
-                file.type
-            )
-        ) {
-
-            showMessage(
-                "Sadece fotoğraf veya video yükleyebilirsin.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        // FORM VERİSİ
-
-        const formData =
-            new FormData();
-
-        formData.append(
-            "isim",
-            isim
-        );
-
-        formData.append(
-            "dosya",
-            file
-        );
-
-
-        // BUTONU KİLİTLE
-
-        submitButton.disabled =
-            true;
-
-        submitButton.textContent =
-            "YÜKLENİYOR...";
-
-
-        showMessage(
-            "İçeriğin yükleniyor..."
-        );
-
-
-        try {
-
-            const response =
-                await fetch(
-                    "/api/galeri/yukle",
-                    {
-                        method: "POST",
-                        body: formData
-                    }
+            const isimInput =
+                document.getElementById(
+                    "isim"
                 );
 
+            const isim =
+                isimInput
+                    ? isimInput.value.trim()
+                    : "";
 
-            const result =
-                await response.json();
 
+            if (!isim) {
 
-            if (!response.ok) {
-
-                throw new Error(
-                    result.message ||
-                    "Yükleme başarısız."
+                showMessage(
+                    "Lütfen ismini yaz.",
+                    "error"
                 );
 
+                return;
             }
 
 
-            showMessage(
-                "✓ İçeriğin NBDS-GALERİ'ye eklendi."
-            );
+            if (!file) {
 
-
-            uploadForm.reset();
-
-
-            fileInfo.textContent =
-                "Maksimum dosya boyutu: 100 MB";
-
-
-            // GALERİYİ YENİLE
-
-            await loadGallery();
-
-
-            // KISA BEKLE
-
-            setTimeout(() => {
-
-                closeModal();
-
-                uploadMessage.classList.remove(
-                    "show"
+                showMessage(
+                    "Lütfen bir fotoğraf veya video seç.",
+                    "error"
                 );
 
-            }, 1200);
+                return;
+            }
 
 
-        } catch (error) {
+            if (
+                file.size >
+                MAX_FILE_SIZE
+            ) {
 
-            console.error(error);
+                showMessage(
+                    "Dosya çok büyük. Maksimum 500 MB.",
+                    "error"
+                );
 
-            showMessage(
-                error.message ||
-                "Yükleme sırasında hata oluştu.",
-                "error"
+                return;
+            }
+
+
+            const allowedTypes = [
+                "image/jpeg",
+                "image/png",
+                "image/webp",
+                "image/gif",
+                "video/mp4",
+                "video/webm",
+                "video/quicktime"
+            ];
+
+
+            if (
+                !allowedTypes.includes(
+                    file.type
+                )
+            ) {
+
+                showMessage(
+                    "Sadece fotoğraf veya video yükleyebilirsin.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            const formData =
+                new FormData();
+
+            formData.append(
+                "isim",
+                isim
             );
 
-        } finally {
+            formData.append(
+                "dosya",
+                file
+            );
+
 
             submitButton.disabled =
-                false;
+                true;
 
             submitButton.textContent =
-                "GALERİYE YÜKLE ↗";
+                "YÜKLENİYOR...";
+
+
+            showMessage(
+                "İçeriğin yükleniyor..."
+            );
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/galeri/yukle",
+                        {
+                            method: "POST",
+                            body: formData
+                        }
+                    );
+
+
+                let result = {};
+
+                try {
+                    result =
+                        await response.json();
+                } catch {
+                    result = {};
+                }
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        result.message ||
+                        "Yükleme başarısız."
+                    );
+
+                }
+
+
+                showMessage(
+                    "✓ İçeriğin NBDS-GALERİ'ye eklendi."
+                );
+
+
+                uploadForm.reset();
+
+                fileInfo.textContent =
+                    "Maksimum dosya boyutu: 500 MB";
+
+                fileInfo.style.color =
+                    "#555";
+
+
+                await loadGallery();
+
+
+                setTimeout(
+                    () => {
+                        closeModal();
+
+                        uploadMessage.classList.remove(
+                            "show"
+                        );
+                    },
+                    1000
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Yükleme hatası:",
+                    error
+                );
+
+                showMessage(
+                    error.message ||
+                    "Yükleme sırasında hata oluştu.",
+                    "error"
+                );
+
+            } finally {
+
+                submitButton.disabled =
+                    false;
+
+                submitButton.textContent =
+                    "GALERİYE YÜKLE ↗";
+
+            }
 
         }
+    );
+}
 
-    }
-);
 
-
-// =========================================
-// GALERİYİ YÜKLE
-// =========================================
+// GALERİYİ GETİR
 
 async function loadGallery() {
+
+    if (!galeriGrid) return;
+
 
     try {
 
         const response =
             await fetch(
-                "/api/galeri"
+                "/api/galeri",
+                {
+                    cache:
+                        "no-store"
+                }
             );
 
 
         if (!response.ok) {
 
             throw new Error(
-                "Galeri alınamadı."
+                "Galeri yüklenemedi."
             );
 
         }
@@ -443,35 +457,37 @@ async function loadGallery() {
             await response.json();
 
 
-        renderGallery(items);
+        renderGallery(
+            Array.isArray(items)
+                ? items
+                : []
+        );
 
 
     } catch (error) {
 
         console.error(
-            "Galeri hatası:",
+            "Galeri yükleme hatası:",
             error
         );
 
 
         galeriGrid.innerHTML = `
+            <div class="gallery-empty">
 
-            <div class="empty-gallery">
-
-                <div class="empty-icon">
+                <div class="gallery-empty-mark">
                     !
                 </div>
 
-                <h3>
+                <h2>
                     GALERİ YÜKLENEMEDİ
-                </h3>
+                </h2>
 
                 <p>
                     Sayfayı yenileyip tekrar deneyin.
                 </p>
 
             </div>
-
         `;
 
     }
@@ -479,9 +495,7 @@ async function loadGallery() {
 }
 
 
-// =========================================
-// GALERİYİ EKRANA BAS
-// =========================================
+// GALERİYİ OLUŞTUR
 
 function renderGallery(items) {
 
@@ -492,40 +506,37 @@ function renderGallery(items) {
     if (!items.length) {
 
         galeriGrid.innerHTML = `
+            <div class="gallery-empty">
 
-            <div class="empty-gallery">
-
-                <div class="empty-icon">
-                    +
+                <div class="gallery-empty-mark">
+                    NBDS
                 </div>
 
-                <h3>
+                <h2>
                     HENÜZ İÇERİK YOK
-                </h3>
+                </h2>
 
                 <p>
-                    İlk fotoğraf veya videoyu sen paylaş.
+                    İlk fotoğrafı veya videoyu sen paylaş.
                 </p>
 
             </div>
-
         `;
 
         return;
-
     }
 
 
     galeriGrid.innerHTML =
         items.map(item => {
 
-            const safeName =
+            const name =
                 escapeHtml(
-                    item.isim
+                    item.isim ||
+                    "NBDS Üyesi"
                 );
 
-
-            const tarih =
+            const date =
                 formatDate(
                     item.tarih
                 );
@@ -536,94 +547,104 @@ function renderGallery(items) {
             ) {
 
                 return `
-
-                    <article class="galeri-card">
+                    <article
+                        class="gallery-card"
+                    >
 
                         <video
-                            class="galeri-media"
+                            class="gallery-media"
                             src="${item.dosya}"
                             controls
                             preload="metadata"
                         ></video>
 
-                        <div class="media-type">
+                        <div class="gallery-media-type">
                             VİDEO
                         </div>
 
-                        <div class="galeri-info">
+                        <div class="gallery-card-info">
 
-                            <strong>
-                                ${safeName}
-                            </strong>
+                            <div class="gallery-card-name">
+                                ${name}
+                            </div>
 
-                            <span>
-                                ${tarih}
-                            </span>
+                            <div class="gallery-card-date">
+                                ${date}
+                            </div>
 
                         </div>
 
                     </article>
-
                 `;
 
             }
 
 
             return `
-
-                <article class="galeri-card">
+                <article
+                    class="gallery-card"
+                >
 
                     <img
-                        class="galeri-media"
+                        class="gallery-media"
                         src="${item.dosya}"
-                        alt="${safeName}"
+                        alt="${name}"
                         loading="lazy"
                     >
 
-                    <div class="media-type">
+                    <div class="gallery-media-type">
                         FOTOĞRAF
                     </div>
 
-                    <div class="galeri-info">
+                    <div class="gallery-card-info">
 
-                        <strong>
-                            ${safeName}
-                        </strong>
+                        <div class="gallery-card-name">
+                            ${name}
+                        </div>
 
-                        <span>
-                            ${tarih}
-                        </span>
+                        <div class="gallery-card-date">
+                            ${date}
+                        </div>
 
                     </div>
 
                 </article>
-
             `;
 
         }).join("");
-
 }
 
 
-// =========================================
-// HTML GÜVENLİĞİ
-// =========================================
+// GÜVENLİ METİN
 
 function escapeHtml(text) {
 
     return String(text)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
 
 }
 
 
-// =========================================
 // TARİH
-// =========================================
 
 function formatDate(dateString) {
 
@@ -636,6 +657,15 @@ function formatDate(dateString) {
         new Date(dateString);
 
 
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+        return "";
+    }
+
+
     return date.toLocaleDateString(
         "tr-TR",
         {
@@ -644,12 +674,9 @@ function formatDate(dateString) {
             year: "numeric"
         }
     );
-
 }
 
 
-// =========================================
-// SAYFA AÇILINCA GALERİYİ GETİR
-// =========================================
+// BAŞLAT
 
 loadGallery();
