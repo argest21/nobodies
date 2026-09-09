@@ -22,9 +22,8 @@
 
     <div class="noise"></div>
 
-    <!-- ÜST MENÜ -->
-
-    <nav class="navbar">
+    <!-- NAVBAR -->
+    <nav class="navbar gallery-navbar">
 
         <a href="index.html" class="logo">
             NOBODIES<span>.</span>
@@ -48,7 +47,10 @@
                 YAYINLAR
             </a>
 
-            <a href="nbds-galeri.html" class="active">
+            <a
+                href="nbds-galeri.html"
+                class="active"
+            >
                 NBDS-GALERİ
             </a>
 
@@ -58,143 +60,85 @@
 
         </div>
 
-        <a href="index.html" class="nav-button">
+        <a
+            href="index.html"
+            class="nav-button"
+        >
             ANA SAYFA ↗
         </a>
 
     </nav>
 
 
-    <!-- GALERİ -->
+    <main class="gallery-page">
 
-    <main class="galeri-page">
+        <!-- HERO -->
+        <section class="gallery-hero">
 
-        <section class="galeri-hero">
+            <div class="gallery-hero-grid"></div>
 
-            <div class="section-label">
+            <div class="gallery-kicker">
+                <span></span>
                 NOBODIES / TOPLULUK
             </div>
 
-            <h1>
-                NBDS-<br>
-                <span>GALERİ.</span>
-            </h1>
+            <div class="gallery-title">
+                <div class="gallery-ghost">
+                    NBDS
+                </div>
 
-            <p>
+                <h1>
+                    NBDS-
+                    <br>
+                    <span>GALERİ.</span>
+                </h1>
+            </div>
+
+            <p class="gallery-description">
                 NOBODIES topluluğunun paylaştığı
                 fotoğraf ve videolar.
                 <br>
-                Sen de anını paylaş.
+                Sen de kendi anını paylaş.
             </p>
 
-            <button
-                class="galeri-upload-button"
-                id="uploadButton"
-            >
-                + FOTOĞRAF / VİDEO YÜKLE
-            </button>
+            <div class="gallery-actions">
+                <button
+                    class="gallery-upload-button"
+                    id="uploadButton"
+                    type="button"
+                >
+                    + FOTOĞRAF / VİDEO YÜKLE
+                </button>
+
+                <div class="gallery-limit">
+                    MAKS. 500 MB
+                </div>
+            </div>
+
+            <div class="gallery-side-label">
+                NBDS / 001
+            </div>
 
         </section>
 
 
-        <!-- YÜKLEME PENCERESİ -->
+        <!-- İÇERİK -->
+        <section class="gallery-content">
 
-        <div
-            class="upload-modal"
-            id="uploadModal"
-        >
+            <div class="gallery-toolbar">
 
-            <div class="upload-box">
-
-                <button
-                    class="close-button"
-                    id="closeButton"
-                >
-                    ×
-                </button>
-
-                <div class="section-label">
-                    NBDS-GALERİ / YÜKLE
-                </div>
-
-                <h2>
-                    ANINI<br>
-                    <span>PAYLAŞ.</span>
-                </h2>
-
-                <form
-                    id="uploadForm"
-                    enctype="multipart/form-data"
-                >
-
-                    <label>
-                        İSMİN
-                    </label>
-
-                    <input
-                        type="text"
-                        name="isim"
-                        id="isim"
-                        placeholder="Oyundaki veya sosyal medya ismin"
-                        maxlength="40"
-                        required
-                    >
-
-
-                    <label>
-                        FOTOĞRAF / VİDEO
-                    </label>
-
-                    <input
-                        type="file"
-                        name="dosya"
-                        id="dosya"
-                        accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm,video/quicktime"
-                        required
-                    >
-
-
-                    <div
-                        class="file-info"
-                        id="fileInfo"
-                    >
-                        Maksimum dosya boyutu: 100 MB
+                <div>
+                    <div class="gallery-section-label">
+                        PAYLAŞILANLAR
                     </div>
 
-
-                    <button
-                        type="submit"
-                        class="submit-button"
-                        id="submitButton"
-                    >
-                        GALERİYE YÜKLE ↗
-                    </button>
-
-                </form>
-
-
-                <div
-                    class="upload-message"
-                    id="uploadMessage"
-                ></div>
-
-            </div>
-
-        </div>
-
-
-        <!-- GALERİ İÇERİKLERİ -->
-
-        <section class="galeri-content">
-
-            <div class="galeri-header">
-
-                <div class="section-label">
-                    PAYLAŞILANLAR
+                    <div class="gallery-subtitle">
+                        TOPLULUK ARŞİVİ
+                    </div>
                 </div>
 
                 <div
-                    class="galeri-count"
+                    class="gallery-count"
                     id="galeriCount"
                 >
                     0 İÇERİK
@@ -204,22 +148,22 @@
 
 
             <div
-                class="galeri-grid"
+                class="gallery-grid"
                 id="galeriGrid"
             >
 
-                <div class="empty-gallery">
+                <div class="gallery-empty">
 
-                    <div class="empty-icon">
-                        +
+                    <div class="gallery-empty-mark">
+                        NBDS
                     </div>
 
-                    <h3>
+                    <h2>
                         HENÜZ İÇERİK YOK
-                    </h3>
+                    </h2>
 
                     <p>
-                        İlk fotoğraf veya videoyu
+                        İlk fotoğrafı veya videoyu
                         sen paylaş.
                     </p>
 
@@ -232,9 +176,113 @@
     </main>
 
 
-    <footer>
+    <!-- UPLOAD MODAL -->
+    <div
+        class="gallery-modal"
+        id="uploadModal"
+        aria-hidden="true"
+    >
 
-        <div class="footer-top">
+        <div
+            class="gallery-modal-backdrop"
+            data-close-modal
+        ></div>
+
+        <div class="gallery-modal-card">
+
+            <div class="gallery-modal-top">
+
+                <div class="gallery-modal-label">
+                    NBDS-GALERİ / YÜKLE
+                </div>
+
+                <button
+                    class="gallery-close"
+                    id="closeButton"
+                    type="button"
+                    aria-label="Kapat"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <h2>
+                ANINI
+                <br>
+                <span>PAYLAŞ.</span>
+            </h2>
+
+
+            <form
+                id="uploadForm"
+                enctype="multipart/form-data"
+            >
+
+                <label for="isim">
+                    İSMİN
+                </label>
+
+                <input
+                    id="isim"
+                    name="isim"
+                    type="text"
+                    maxlength="40"
+                    placeholder="İsmini yaz"
+                    autocomplete="nickname"
+                    required
+                >
+
+
+                <label for="dosya">
+                    FOTOĞRAF / VİDEO
+                </label>
+
+                <input
+                    id="dosya"
+                    name="dosya"
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm,video/quicktime"
+                    required
+                >
+
+
+                <div
+                    id="fileInfo"
+                    class="gallery-file-info"
+                >
+                    Maksimum dosya boyutu: 500 MB
+                </div>
+
+
+                <button
+                    id="submitButton"
+                    class="gallery-submit"
+                    type="submit"
+                >
+                    GALERİYE YÜKLE ↗
+                </button>
+
+            </form>
+
+
+            <div
+                id="uploadMessage"
+                class="gallery-upload-message"
+                role="status"
+                aria-live="polite"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer class="gallery-footer">
+
+        <div class="gallery-footer-top">
 
             <div class="footer-logo">
                 NOBODIES<span>.</span>
@@ -263,7 +311,7 @@
         </div>
 
 
-        <div class="footer-bottom">
+        <div class="gallery-footer-bottom">
 
             <span>
                 © <span id="year"></span>
