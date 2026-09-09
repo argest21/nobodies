@@ -1199,6 +1199,100 @@ footer {
 }
 
 
+
+
+/* =========================================================
+   NOBODIES LOGO
+========================================================= */
+
+.brand-lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.site-logo {
+    width: 38px;
+    height: 27px;
+    object-fit: contain;
+
+    filter: invert(1);
+    opacity: .96;
+}
+
+.brand-lockup .logo {
+    line-height: 1;
+}
+
+.hero-logo-mark {
+    position: absolute;
+    top: 28px;
+    right: 13vw;
+    z-index: 1;
+
+    width: 210px;
+    height: 135px;
+
+    opacity: .12;
+
+    transform: rotate(-4deg);
+
+    pointer-events: none;
+}
+
+.hero-logo-mark img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    filter: invert(1);
+}
+
+.footer-brand-lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.footer-site-logo {
+    width: 70px;
+    height: 46px;
+    object-fit: contain;
+
+    filter: invert(1);
+    opacity: .75;
+}
+
+@media (max-width: 900px) {
+    .hero-logo-mark {
+        right: 5vw;
+        top: 28px;
+        width: 145px;
+        height: 95px;
+        opacity: .09;
+    }
+}
+
+@media (max-width: 600px) {
+    .site-logo {
+        width: 32px;
+        height: 23px;
+    }
+
+    .hero-logo-mark {
+        top: 55px;
+        right: 3vw;
+        width: 95px;
+        height: 65px;
+        opacity: .08;
+    }
+
+    .footer-site-logo {
+        width: 55px;
+        height: 36px;
+    }
+}
+
 /* =========================================================
    TABLET
 ========================================================= */
